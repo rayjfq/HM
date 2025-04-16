@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Medicos</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- Enlace al CSS -->
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+           <!-- Navbar -->
+           <nav class="navbar">
+            <div class="logo">
+                <img src="/static/logo.jpeg" alt="Logo" class="logo-img">
+                <h1>Panel de Administración</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="menu-item">
+                    <a href="/dashboard">Inicio</a>
+                </li>
+                <li class="menu-item dropdown">
+                    <a href="#">Gestión de Usuarios</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="showModal('create-user-modal')">Crear Usuario</a></li>
+                        <li><a href="/list_users">Listar Usuarios</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item dropdown">
+                    <a href="#">Gestión de Pacientes</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="showModal('add-patient-modal')">Agregar Paciente</a></li>
+                        <li><a href="{{ url_for('patients.list_patients') }}">Listar Pacientes</a></li>
+                    </ul>
+                <li class="menu-item dropdown">
+                    <a href="#">Gestión de Médicos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="showModal('add-doctor-modal')">Agregar Médico</a></li>
+                        <li><a href="{{ url_for('doctors.list_doctors') }}">Listar Médicos</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item dropdown">
+                    <a href="#">Historias Médicas</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="showModal('create-history-modal')">Crear Historia</a></li>
+                        <li><a href="{{ url_for('observations.buscar_history') }}">Buscar Historia Médica</a></li>
+                        <li><a href="{{ url_for('histories.list_history') }}">Listar Historias</a></li>
+                     </ul>
+                </li>   
+                <li class="menu-item logout">
+                    <a href="/logout">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header class="header">
+                <h2>busqueda de Historia Médica</h2>
+            </header>
+            <section class="content">
+                <div id="medical-history-form-section" class="dashboard-section">
+                    <h2>Buscar Historia Médica</h2>
+                <form id="medical-history-form">
+                    <label for="patient-id">ID del Paciente:</label>
+                    <input type="text" id="patient-id" name="patient_id" placeholder="Ingrese ID del paciente" required>
+                    <button type="submit">Buscar</button>
+                </form>
+            
+                <!-- Resultados del paciente y médico -->
+                <div id="medical-history-details" style="margin-top: 20px;">
+                    <h3>Datos del Paciente</h3>
+                    <p><strong>Nombre:</strong> <span id="patient-name"></span></p>
+                    <p><strong>Apellido:</strong> <span id="patient-last-name"></span></p>
+                    <p><strong>Género:</strong> <span id="patient-gender"></span></p>
+                    <p><strong>Fecha de Nacimiento:</strong> <span id="patient-birth-date"></span></p>
+            
+                    <h3>Datos del Médico</h3>
+                    <p><strong>Nombre:</strong> <span id="doctor-name"></span></p>
+                    <p><strong>Apellido:</strong> <span id="doctor-last-name"></span></p>
+                    <p><strong>Especialidad:</strong> <span id="doctor-specialty"></span></p>
+            
+                    <!-- Observaciones -->
+                    <h3>Observaciones</h3>
+                    <table id="observations-table" border="1" style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Observación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aquí se llenarán las observaciones dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>  
+            <footer class="footer">
+                <p>&copy; 2025 Historia Médica. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+    <div id="modals-container"></div>
+    <script src="/static/js/dashboard.js"></script>
+    <script>
+
+        fetch('/static/modals.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('modals-container').innerHTML = html;
+        });
+    </script>
+    <script>
+        function showMedicalHistoryForm() {
+        // Muestra el formulario y oculta otras secciones
+        document.querySelectorAll('.dashboard-section').forEach(section => section.style.display = 'none');
+        document.getElementById('medical-history-form-section').style.display = 'block';
+    }
+    
+    document.getElementById("medical-history-form").onsubmit = function (event) {
+        event.preventDefault(); // Evita la recarga de la página
+    
+        const patientId = document.getElementById("patient-id").value;
+    
+        // Realizar la solicitud al servidor
+        fetch(`/get_patient_data/${patientId}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error al obtener los datos del paciente.");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data.success) {
+                    // Mostrar datos del paciente
+                    document.getElementById("patient-name").textContent = data.patient.name;
+                    document.getElementById("patient-last-name").textContent = data.patient.last_name;
+                    document.getElementById("patient-gender").textContent = data.patient.gender;
+                    document.getElementById("patient-birth-date").textContent = data.patient.birth_date;
+    
+                    // Mostrar datos del médico
+                    document.getElementById("doctor-name").textContent = data.doctor.name;
+                    document.getElementById("doctor-last-name").textContent = data.doctor.last_name;
+                    document.getElementById("doctor-specialty").textContent = data.doctor.specialty;
+    
+                    // Mostrar observaciones en la tabla
+                    const tbody = document.getElementById("observations-table").querySelector("tbody");
+                    tbody.innerHTML = ""; // Limpiar contenido previo
+    
+                    data.observations.forEach((observation) => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${observation.date}</td>
+                            <td>${observation.observation_text}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+    
+                    // Mostrar la sección de detalles
+                    document.getElementById("medical-history-details").style.display = "block";
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("Hubo un error al obtener los datos.");
+            });
+    };
+    
+    </script>
+</body>
+</html>
+

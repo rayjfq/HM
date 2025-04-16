@@ -1,0 +1,390 @@
+/* Estilo general para la página */
+.login-body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Fondo blanco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+
+}
+
+/* Contenedor centrado */
+.login-container {
+    background-color: #f2f2f2; /* Gris claro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del formulario */
+    text-align: center;
+}
+
+/* Título del formulario */
+.login-container h1 {
+    color: #0056b3; /* Azul oscuro */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Etiquetas y campos */
+form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333333; /* Gris oscuro */
+    text-align: left;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc; /* Gris claro */
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Botón de envío */
+form button {
+    background-color: #0056b3; /* Azul oscuro */
+    color: #ffffff; /* Blanco */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #003a80; /* Azul más oscuro al pasar el mouse */
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #d9534f; /* Rojo */
+    background-color: #f8d7da; /* Fondo rojo claro */
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.logout a {
+    color: #ff4d4d; /* Rojo para indicar acción de cierre */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logout a:hover {
+    color: #e60000; /* Rojo más oscuro al pasar el mouse */
+}
+
+/* Estilo general */
+.dashboard-body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100vh; 
+}
+
+/* Navbar vertical */
+.navbar {
+    width: 250px;
+    background-color: #0056b3; /* Azul oscuro */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logo-img {
+    width: 220px;
+    height: 90px;
+    margin-bottom: 10px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 15px 0;
+}
+
+.menu-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+}
+
+.menu-item a:hover {
+    color: #f1f1f1; /* Gris claro */
+}
+
+.nav-menu .menu-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+}
+
+.nav-menu .menu-item a:hover {
+    color: #f1f1f1; /* Gris claro */
+}
+
+
+.dropdown-menu {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    display: none;
+}
+
+.menu-item:hover .dropdown-menu {
+    display: block;
+    background-color: #003a80; /* Azul más oscuro */
+}
+
+/* Contenido principal */
+.main-content {
+    flex-grow: 1;
+    background-color: #f9f9f9; /* Gris claro */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Estilos para la cabecera */
+.header {
+    background-color: #808080; /* Gris medio */
+    color: #000000;          /* Texto en negro */
+    padding: 15px;           /* Espaciado interno, ajústalo según tus necesidades */
+    text-align: center;      /* Centra el contenido */
+    /* Puedes incluir otras propiedades como border, margin, etc., de acuerdo a tu diseño */
+}
+
+
+.content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.footer {
+    background-color: #333333; /* Negro */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .navbar {
+        width: 200px;
+    }
+
+    .header {
+        font-size: 14px;
+    }
+
+    .menu-item a {
+        font-size: 14px;
+    }
+}
+
+.admin-body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2; /* Gris claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la pantalla */
+    margin: 0;
+}
+
+.create-user-container {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del formulario */
+}
+
+.create-user-container h1 {
+    color: #0056b3; /* Azul oscuro */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.create-user-container form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333333; /* Gris oscuro */
+}
+
+.create-user-container form input,
+.create-user-container form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc; /* Gris claro */
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.create-user-container form button {
+    background-color: #0056b3; /* Azul oscuro */
+    color: #ffffff; /* Blanco */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.create-user-container form button:hover {
+    background-color: #003a80; /* Azul más oscuro */
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+.user-table th {
+    background-color: #0056b3; /* Azul oscuro */
+    color: white;
+}
+
+.user-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilo del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo con transparencia */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Aparece sobre todo */
+}
+
+.modal-content {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 20px;
+    box-sizing: border-box; 
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px; /* Tamaño máximo */
+}
+
+.close-btn {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    float: right; /* Posición de cierre en la esquina */
+}
+
+/* Estilo para campos de formulario en línea */
+.modal-content form label {
+    display: inline-block; /* Hace que el label sea un elemento en línea */
+    width: 30%; /* Define un ancho fijo o relativo para los labels */
+    margin-right: 10px; /* Espaciado entre el label y el input/select */
+    font-size: 14px;
+    color: #333; /* Color del texto */
+}
+
+.modal-content form select, 
+.modal-content form input {
+    display: inline-block;
+    width: 60%; /* Ajusta el ancho del input/select */
+    padding: 10px;
+    margin-bottom: 10px; /* Espacio inferior */
+    border: 1px solid #cccccc; /* Bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 12px;
+}
+.success-message {
+    color: #28a745; /* Verde para indicar éxito */
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.flash-messages {
+    background-color: #28a745; /* Verde para éxito */
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+.flash-messages p {
+    margin: 0;
+}
+
+form textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+form input[type="date"] {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="date"] {
+    width: calc(100% - 20px); /* Ajusta el ancho para mantenerse dentro del modal */
+    margin: 0 auto; /* Centra horizontalmente */
+    display: block; /* Asegura que esté en una nueva línea */
+    padding: 5px; /* Agrega un espacio interno para mejor apariencia */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+.dashboard-section {
+    display: block;
+}
+
+
+
+
+
+
+
+

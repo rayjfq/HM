@@ -4,7 +4,7 @@
         <span class="close-btn" onclick="closeModal('create-user-modal')">×</span>
         <h2>Crear Nuevo Usuario</h2>
          <!-- Contenedor para el mensaje -->
-        <div id="success-message" class="success-message" style="display: none;">
+        <div id="success-message-user" class="success-message" style="display: none;">
             ¡Usuario agregado satisfactoriamente!
         </div>
         <form method="POST" action="/create_user" id="create-user-form">
@@ -33,6 +33,9 @@
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('create-history-modal')">×</span>
         <h2>Agregar Historia Médica</h2>
+        <div id="success-message-history" class="success-message" style="display: none;">
+            ¡Historia agregada satisfactoriamente!
+        </div>
         <form method="POST" action="/histories/add" id="create-history-form">
             <label for="history_id">Numero de Historia Médica:</label>
             <input type="text" id="history_id" name="history_id" required>

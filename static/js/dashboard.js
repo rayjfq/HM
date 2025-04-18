@@ -23,8 +23,14 @@ function configureForm(formId, url, modalId, successMessageId) {
             body: new FormData(event.target)
         })
         .then(response => {
+            console.log("Response status:", response.status);
             if (response.ok) return response.json();
-            else throw new Error("Error al procesar la solicitud.");
+            else {
+                return response.text().then(text => {
+                    throw new Error(`Error al procesar la solicitud. Status ${response.status}. Respuesta: ${text}`);
+                });
+            }
+            
         })
         .then(data => {
             if (data.success) {
@@ -37,7 +43,7 @@ function configureForm(formId, url, modalId, successMessageId) {
 
                 setTimeout(() => {
                     console.log("Ejecutando redirección a /dashboard");
-                    closeModal(modalId);
+                    //closeModal(modalId);
                     window.location.href = '/dashboard';
                 }, 2000);
             } else {
@@ -53,8 +59,8 @@ function configureForm(formId, url, modalId, successMessageId) {
 
 // Esta función se llama una vez que los modales ya se han insertado en el DOM.
 function initModalForms() {
-    configureForm("create-user-form", "/create_user", "create-user-modal", "success-message");
-    configureForm("create-history-form", "/add_history", "create-history-modal", "success-message-history");
+    configureForm("create-user-form", "/create_user", "create-user-modal", "success-message-user");
+    configureForm("create-history-form", "/histories/add", "create-history-modal", "success-message-history");
     configureForm("create-patient-form", "/patients/add", "add-patient-modal", "success-message-patient");
     configureForm("create-doctor-form", "/doctors/add", "add-doctor-modal", "success-message-doctor");
 }
